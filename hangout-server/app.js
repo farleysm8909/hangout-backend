@@ -22,13 +22,13 @@ function rowToObject(row) {
         };
 }
 
-app.get('/hangout/:month/:day', (request, response) => {
-        const query = 'SELECT id, event_name, month, day, year, start_time, end_time FROM event WHERE is_deleted = 0 AND month = ? AND day = ? ORDER BY year DESC, day, start_time';
-        const params = [request.params.month, request.params.day];
+app.get('/hangout/:month/:year', (request, response) => {
+        const query = 'SELECT id, event_name, month, day, year, start_time, end_time FROM event WHERE is_deleted = 0 AND month = ? AND year = ? ORDER BY day';
+        const params = [request.params.month, request.params.year];
         connection.query(query, params, (error, rows) => {
                 response.send({
                         ok: true,
-                        events: rows.map(rowToObject),
+                        hangout: rows.map(rowToObject),
                 });
         });
 });
