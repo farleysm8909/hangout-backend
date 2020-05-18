@@ -19,6 +19,7 @@ function rowToObject(row) {
                 year: row.year,
                 start_time: row.start_time,
                 end_time: row.end_time,
+                id: row.id
         };
 }
 
